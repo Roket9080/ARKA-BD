@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Base de Datos - Usuarios ARKA</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Consolas', 'Courier New', monospace; }
+        body { background-color: #1e1e1e; color: #d4d4d4; padding: 20px; }
+        
+        .db-header {
+            background-color: #252526;
+            padding: 15px;
+            border-radius: 6px 6px 0 0;
+            border-bottom: 2px solid #007acc;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .db-title { color: #569cd6; font-size: 16px; font-weight: bold; }
+        .db-status { color: #6a9955; font-size: 12px; }
+
+        .container {
+            background-color: #252526;
+            padding: 20px;
+            border-radius: 0 0 6px 6px;
+        }
+
+        .insert-card {
+            background-color: #1e1e1e;
+            padding: 15px;
+            border: 1px solid #3c3c3c;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        .insert-card h4 { color: #ce9178; margin-bottom: 12px; font-size: 14px; }
+        .form-row { display: flex; gap: 10px; margin-bottom: 10px; }
+        
+        input {
+            background-color: #3c3c3c;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 8px;
+            border-radius: 3px;
+            width: 100%;
+            font-size: 12px;
+        }
+
+        .btn-sql {
+            background-color: #0e639c;
+            color: white;
+            border: none;
+            padding: 9px 16px;
+            cursor: pointer;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .btn-sql:hover { background-color: #1177bb; }
+
+        /* Estilos de la Tabla */
+        .table-responsive { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 12px; }
+        th { background-color: #333333; color: #9cdcfe; text-align: left; padding: 10px; border: 1px solid #474747; white-space: nowrap; }
+        td { padding: 8px 10px; border: 1px solid #3c3c3c; background-color: #1e1e1e; white-space: nowrap; }
+        tr:hover td { background-color: #2a2d2e; }
+    </style>
+</head>
+<body>
+
+    <div class="db-header">
+        <span class="db-title">DATABASE: pr_arka | TABLE: usuarios</span>
+        <span class="db-status">● CONNECTED (SQLite)</span>
+    </div>
+
+    <div class="container">
+        <!-- Formulario INSERT -->
+        <div class="insert-card">
+            <h4>[INSERT INTO usuarios]</h4>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-row">
+                    <input type="text" name="identificador_unico" placeholder="ID Usuario (Único)" required>
+                    <input type="password" name="password" placeholder="Contraseña segura" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Debe contener al menos 8 caracteres, una mayúscula, una minúscula y un número" required>
+                    <input type="text" name="nombres" placeholder="Nombres completos" required>
+                    <input type="text" name="apellidos" placeholder="Apellidos completos" required>
+                </div>
+                <div class="form-row">
+                    <input type="email" name="correo" placeholder="Correo electrónico" required>
+                    <input type="tel" name="telefono" placeholder="Número de teléfono" required>
+                    <input type="tel" name="contacto_emergencia" placeholder="Contacto de emergencia" required>
+                    <input type="text" name="direccion" placeholder="Dirección de residencia" required>
+                </div>
+                <button type="submit" class="btn-sql">Ejecutar INSERT</button>
+            </form>
+        </div>
+
+        <!-- Tabla SELECT -->
+        <h4 style="color: #dcdcaa; margin-bottom: 10px;">[SELECT * FROM usuarios;]</h4>
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>id (PK)</th>
+                        <th>identificador_unico (UQ)</th>
+                        <th>password</th>
+                        <th>nombres</th>
+                        <th>apellidos</th>
+                        <th>correo</th>
+                        <th>telefono</th>
+                        <th>contacto_emergencia</th>
+                        <th>direccion</th>
+                        <th>creado_en</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for reg in registros %}
+                    <tr>
+                        <td style="color: #b5cea8;">#{{ reg.id }}</td>
+                        <td style="color: #ce9178;">"{{ reg.identificador_unico }}"</td>
+                        <td style="color: #808080;">********</td>
+                        <td>{{ reg.nombres }}</td>
+                        <td>{{ reg.apellidos }}</td>
+                        <td style="color: #4ec9b0;">{{ reg.correo }}</td>
+                        <td>{{ reg.telefono }}</td>
+                        <td style="color: #ce9178;">{{ reg.contacto_emergencia }}</td>
+                        <td>{{ reg.direccion }}</td>
+                        <td style="color: #808080;">{{ reg.creado_en|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="10" style="text-align: center; color: #808080;">0 rows returned (Tabla vacía).</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+</html>
