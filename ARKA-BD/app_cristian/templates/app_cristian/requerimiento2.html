@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>RF-NU-006 - Botón de Emergencia</title>
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f4f6f9; margin: 20px; }
+        .container { max-width: 600px; margin: auto; background: white; padding: 25px; border-radius: 10px; box-shadow: 0 0 12px rgba(0,0,0,0.15); text-align: center; }
+        .btn-emergencia { background-color: #d9534f; color: white; border: none; padding: 25px 40px; font-size: 22px; font-weight: bold; border-radius: 50px; cursor: pointer; width: 100%; margin: 20px 0; transition: background 0.3s; box-shadow: 0 4px 10px rgba(217, 83, 79, 0.4); }
+        .btn-emergencia:hover { background-color: #c9302c; }
+        .alert { padding: 12px; margin-bottom: 15px; border-radius: 5px; font-weight: bold; }
+        .alert-success { background-color: #d4edda; color: #155724; }
+        .alert-error { background-color: #f8d7da; color: #721c24; }
+        .admin-box { background-color: #eef2f5; padding: 15px; border-radius: 6px; text-align: left; margin-top: 25px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #333; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>RF-NU-006: Botón de Emergencia</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{% if message.tags == 'error' %}error{% else %}success{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- BOTÓN PRINCIPAL DE EMERGENCIA -->
+    <form method="POST" id="form-emergencia">
+        {% csrf_token %}
+        <input type="hidden" name="activar_emergencia" value="1">
+        <button type="button" class="btn-emergencia" onclick="confirmarLlamada()">
+            🚨 LLAMAR A EMERGENCIA ({{ config.numero_emergencia }})
+        </button>
+    </form>
+
+    <!-- PANEL DE ADMINISTRACIÓN (PARAMETRIZACIÓN) -->
+    <div class="admin-box">
+        <h4>Parametrización (Rol: Administrador)</h4>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="hidden" name="guardar_config" value="1">
+            <label><strong>Número de emergencia parametrizado:</strong></label><br>
+            <input type="text" name="numero_emergencia" value="{{ config.numero_emergencia }}" style="width: 70%; padding: 6px; margin-top: 5px;" required>
+            <button type="submit" style="padding: 6px 12px; background: #333; color: white; border: none; border-radius: 4px; cursor: pointer;">Guardar</button>
+        </form>
+    </div>
+
+    <!-- HISTORIAL DE ACCIONES -->
+    <h4 style="text-align: left; margin-top: 25px;">Historial de Llamadas de Emergencia</h4>
+    <table>
+        <tr>
+            <th>Fecha y Hora</th>
+            <th>Número Marcado</th>
+            <th>Estado</th>
+        </tr>
+        {% for reg in historial %}
+        <tr>
+            <td>{{ reg.fecha_hora|date:"d/m/Y H:i:s" }}</td>
+            <td>{{ reg.numero_marcado }}</td>
+            <td>{{ reg.estado }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3">No hay registros de emergencia.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+<script>
+function confirmarLlamada() {
+    // Protección contra pulsaciones accidentales
+    if (confirm("¿Está seguro de realizar la llamada de emergencia a la línea {{ config.numero_emergencia }}?")) {
+        document.getElementById('form-emergencia').submit();
+    }
+}
+</script>
+
+</body>
+</html>
