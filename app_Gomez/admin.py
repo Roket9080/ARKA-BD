@@ -1,3 +1,6 @@
 from django.contrib import admin
+from .models import AtencionMedica, CasoRiesgo
 
-# Register your models here.
+# Registramos los modelos para que aparezcan en el panel de administración
+admin.site.register(AtencionMedica)
+admin.site.register(CasoRiesgo)
