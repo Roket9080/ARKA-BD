@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>RF-NU-005 - Atención en Salud</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f4f6f9; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { color: #1e5631; }
+        .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        label { font-weight: bold; display: block; margin-top: 10px; }
+        textarea, input { width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+        button { margin-top: 20px; background-color: #1e5631; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; font-size: 16px; }
+        button:hover { background-color: #143d22; }
+        table { width: 100%; margin-top: 30px; border-collapse: collapse; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+        th { background-color: #1e5631; color: white; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>RF-NU-005: Atención de un Profesional en Salud</h2>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div>
+            <label>Nombre del Profesional en Salud:</label>
+            <input type="text" name="profesional" required>
+        </div>
+
+        <div class="grid">
+            <!-- ENTRADAS -->
+            <div>
+                <h3>Entradas</h3>
+                <label>Solicitud de atención:</label>
+                <textarea name="solicitud" rows="3" required></textarea>
+
+                <label>Información clínica / Historia médica:</label>
+                <textarea name="historia" rows="3" required></textarea>
+
+                <label>Resultados de evaluaciones iniciales:</label>
+                <textarea name="evaluacion" rows="3" required></textarea>
+            </div>
+
+            <!-- SALIDAS -->
+            <div>
+                <h3>Salidas</h3>
+                <label>Reporte de valoración:</label>
+                <textarea name="reporte" rows="3" required></textarea>
+
+                <label>Plan de intervención / Tratamiento:</label>
+                <textarea name="plan" rows="3" required></textarea>
+
+                <label>Estrategias de prevención y recomendaciones:</label>
+                <textarea name="estrategias" rows="3" required></textarea>
+            </div>
+        </div>
+
+        <button type="submit">Guardar Registro en la BD</button>
+    </form>
+
+    <!-- TABLA DE REGISTROS -->
+    <h3>Historial de Registros</h3>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Profesional</th>
+            <th>Solicitud</th>
+            <th>Plan de Tratamiento</th>
+            <th>Fecha</th>
+        </tr>
+        {% for reg in registros %}
+        <tr>
+            <td>{{ reg.id }}</td>
+            <td>{{ reg.profesional }}</td>
+            <td>{{ reg.solicitud_usuario }}</td>
+            <td>{{ reg.plan_tratamiento }}</td>
+            <td>{{ reg.fecha_registro|date:"d/m/Y H:i" }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">No hay registros guardados.</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
