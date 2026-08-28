@@ -5,23 +5,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Profesionales</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #f0f4f8, #ffffff); padding: 20px; }
-        h1 { color: #2c3e50; text-align: center; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        th { background-color: #2980b9; color: white; padding: 12px; text-align: left; }
-        td { padding: 10px; border-bottom: 1px solid #ddd; color: #333; }
-        tr:hover td { background-color: #f1f1f1; }
-        .btn { padding: 8px 12px; border-radius: 4px; text-decoration: none; color: white; font-size: 13px; }
-        .btn-crear { background-color: #27ae60; }
-        .btn-editar { background-color: #2980b9; }
-        .btn-eliminar { background-color: #c0392b; }
-        .btn-crear:hover, .btn-editar:hover, .btn-eliminar:hover { opacity: 0.8; }
-    </style>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
 </head>
 <body>
-    <h1>Lista de Profesionales</h1>
-    <p style="text-align: center;"><a href="{% url 'registro_profesional' %}" class="btn btn-crear">➕ Registrar Nuevo Profesional</a></p>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
+        <h2>ARKA</h2>
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
+        <a href="{% url 'registro_profesional' %}">➕ Registrar</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>👨‍⚕️ Lista de Profesionales</h1>
+        <a href="{% url 'registro_profesional' %}" class="btn-primario">➕ Registrar Nuevo</a>
+    </header>
 
     <table>
         <thead>
@@ -45,8 +49,8 @@
                 <td>{{ profesional.correo }}</td>
                 <td>{{ profesional.telefono }}</td>
                 <td>
-                    <a href="{% url 'editar_profesional' profesional.id_profesional %}" class="btn btn-editar">✏️ Editar</a>
-                    <a href="{% url 'eliminar_profesional' profesional.id_profesional %}" class="btn btn-eliminar">🗑️ Eliminar</a>
+                    <a href="{% url 'editar_profesional' profesional.id_profesional %}" class="btn-editar">✏️ Editar</a>
+                    <a href="{% url 'eliminar_profesional' profesional.id_profesional %}" class="btn-eliminar">🗑️ Eliminar</a>
                 </td>
             </tr>
             {% empty %}
@@ -56,5 +60,7 @@
             {% endfor %}
         </tbody>
     </table>
+</div>
+
 </body>
 </html>
