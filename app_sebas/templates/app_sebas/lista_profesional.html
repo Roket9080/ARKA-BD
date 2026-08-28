@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Profesionales</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
+        <h2>ARKA</h2>
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
+        <a href="{% url 'registro_profesional' %}">➕ Registrar</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>👨‍⚕️ Lista de Profesionales</h1>
+        <a href="{% url 'registro_profesional' %}" class="btn-primario">➕ Registrar Nuevo</a>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Identificador</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesional in profesionales %}
+            <tr>
+                <td>{{ profesional.id_profesional }}</td>
+                <td>{{ profesional.identificador }}</td>
+                <td>{{ profesional.nombres }}</td>
+                <td>{{ profesional.apellidos }}</td>
+                <td>{{ profesional.correo }}</td>
+                <td>{{ profesional.telefono }}</td>
+                <td>
+                    <a href="{% url 'editar_profesional' profesional.id_profesional %}" class="btn-editar">✏️ Editar</a>
+                    <a href="{% url 'eliminar_profesional' profesional.id_profesional %}" class="btn-eliminar">🗑️ Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 20px;">No hay profesionales registrados.</td>
+            </tr>
+            {% endfor %}
+
+            <a href="{% url 'lista_chats' %}">💬 Chats</a>
+            <a href="{% url 'registro_profesional' %}">➕ Registrar</a>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
