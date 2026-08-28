@@ -7,4 +7,5 @@ urlpatterns = [
     path('', include('app_miguel.urls')),
     path('', include('app_Gomez.urls')),
     path('', include('app_Liseth.urls')),
+    path('', include("app_Alejandro_07.urls"))
 ]

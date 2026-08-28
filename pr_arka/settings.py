@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     'app_miguel'
     'app_Gomez'
     'app_Liseth'
+    'app_Alejandro_07'
 ]
 
 MIDDLEWARE = [
@@ -47,7 +48,8 @@ TEMPLATES = [
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR / 'app_miguel' / 'templates', 
                  BASE_DIR / 'app_Gomez' / 'templates', 
-                 BASE_DIR / 'app_Liseth' / 'templates'],
+                 BASE_DIR / 'app_Liseth' / 'templates',
+                 BASE_DIR / 'app_Alejandro_07' / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
