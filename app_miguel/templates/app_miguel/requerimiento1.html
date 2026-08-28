@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Módulo de Requerimientos - ARKA</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 30px;
+        }
+
+        .header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px 30px;
+            border-radius: 8px 8px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .container {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 0 0 8px 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .grid-layout {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .btn-submit {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            font-size: 15px;
+        }
+
+        .btn-submit:hover {
+            background-color: #2980b9;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        th {
+            background-color: #e9ecef;
+            color: #495057;
+        }
+
+        .badge {
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .badge-alta { background-color: #e74c3c; }
+        .badge-media { background-color: #f39c12; }
+        .badge-baja { background-color: #2ecc71; }
+    </style>
+</head>
+<body>
+
+    <div style="max-width: 1000px; margin: 0 auto;">
+        <!-- Encabezado de la página -->
+        <div class="header">
+            <h2>Gestión de Requerimientos</h2>
+            <span>ARKA System</span>
+        </div>
+
+        <!-- Contenedor Principal -->
+        <div class="container">
+            <p style="color: #6c757d; margin-bottom: 10px;">
+                Módulo para el registro, consulta y control de requerimientos funcionales y no funcionales.
+            </p>
+
+            <div class="grid-layout">
+                <!-- Formulario de Registro -->
+                <div class="card">
+                    <h3 style="margin-bottom: 15px; font-size: 18px;">Nuevo Requerimiento</h3>
+                    <form method="POST">
+                        <div class="form-group">
+                            <label for="titulo">Título</label>
+                            <input type="text" id="titulo" placeholder="Ej. Recuperar contraseña">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tipo">Tipo</label>
+                            <select id="tipo">
+                                <option value="funcional">Funcional</option>
+                                <option value="no_funcional">No Funcional</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="prioridad">Prioridad</label>
+                            <select id="prioridad">
+                                <option value="alta">Alta</option>
+                                <option value="media">Media</option>
+                                <option value="baja">Baja</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="descripcion">Descripción</label>
+                            <textarea id="descripcion" rows="3" placeholder="Detalle la solicitud..."></textarea>
+                        </div>
+
+                        <button type="button" class="btn-submit">Guardar Requerimiento</button>
+                    </form>
+                </div>
+
+                <!-- Lista / Tabla de Requerimientos -->
+                <div>
+                    <h3 style="margin-bottom: 15px; font-size: 18px;">Listado Registrado</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Requerimiento</th>
+                                <th>Tipo</th>
+                                <th>Prioridad</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Módulo de Login</td>
+                                <td>Funcional</td>
+                                <td><span class="badge badge-alta">Alta</span></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Optimización de base de datos</td>
+                                <td>No Funcional</td>
+                                <td><span class="badge badge-media">Media</span></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Generación de reportes PDF</td>
+                                <td>Funcional</td>
+                                <td><span class="badge badge-baja">Baja</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html> 
