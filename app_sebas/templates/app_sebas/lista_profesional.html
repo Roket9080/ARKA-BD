@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Profesionales</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #f0f4f8, #ffffff); padding: 20px; }
+        h1 { color: #2c3e50; text-align: center; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        th { background-color: #2980b9; color: white; padding: 12px; text-align: left; }
+        td { padding: 10px; border-bottom: 1px solid #ddd; color: #333; }
+        tr:hover td { background-color: #f1f1f1; }
+        .btn { padding: 8px 12px; border-radius: 4px; text-decoration: none; color: white; font-size: 13px; }
+        .btn-crear { background-color: #27ae60; }
+        .btn-editar { background-color: #2980b9; }
+        .btn-eliminar { background-color: #c0392b; }
+        .btn-crear:hover, .btn-editar:hover, .btn-eliminar:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <h1>Lista de Profesionales</h1>
+    <p style="text-align: center;"><a href="{% url 'registro_profesional' %}" class="btn btn-crear">➕ Registrar Nuevo Profesional</a></p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Identificador</th>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Correo</th>
+                <th>Teléfono</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for profesional in profesionales %}
+            <tr>
+                <td>{{ profesional.id_profesional }}</td>
+                <td>{{ profesional.identificador }}</td>
+                <td>{{ profesional.nombres }}</td>
+                <td>{{ profesional.apellidos }}</td>
+                <td>{{ profesional.correo }}</td>
+                <td>{{ profesional.telefono }}</td>
+                <td>
+                    <a href="{% url 'editar_profesional' profesional.id_profesional %}" class="btn btn-editar">✏️ Editar</a>
+                    <a href="{% url 'eliminar_profesional' profesional.id_profesional %}" class="btn btn-eliminar">🗑️ Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="7" style="text-align: center; padding: 20px;">No hay profesionales registrados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
