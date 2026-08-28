@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Chat</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
+        <h2>ARKA</h2>
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
+        <a href="{% url 'lista_chats' %}">💬 Chats</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor-form">
+    <h1>➕ Crear Nuevo Chat</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="campo">
+            <label>Nombre del Grupo:</label>
+            <input type="text" name="nombre_grupo" required>
+        </div>
+
+        <div class="campo">
+            <label>Profesional que crea el chat:</label>
+            <select name="creado_por_id" required>
+                {% for profesional in profesionales %}
+                    <option value="{{ profesional.id_profesional }}">{{ profesional.nombres }} {{ profesional.apellidos }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="acciones-form">
+            <button type="submit" class="btn-guardar">💾 Registar</button>
+            <a href="{% url 'lista_chats' %}" class="btn-cancelar">❌ Cancelar</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

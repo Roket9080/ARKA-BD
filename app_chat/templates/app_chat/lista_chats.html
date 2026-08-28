@@ -1,0 +1,59 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Chats</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
+        <h2>ARKA</h2>
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
+        <a href="{% url 'lista_chats' %}">💬 Chats</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>💬 Lista de Chats</h1>
+        <a href="{% url 'crear_chat' %}" class="btn-primario">➕ Crear Nuevo Chat</a>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre del Grupo</th>
+                <th>Fecha de Creación</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for chat in chats %}
+            <tr>
+                <td>{{ chat.id_chat }}</td>
+                <td>{{ chat.nombre_grupo }}</td>
+                <td>{{ chat.fecha_creacion }}</td>
+                <td>
+                    <a href="{% url 'ver_chat' chat.id_chat %}" class="btn-editar">💬 Entrar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" style="text-align: center; padding: 20px;">No hay chats creados.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

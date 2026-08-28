@@ -58,6 +58,9 @@
                 <td colspan="7" style="text-align: center; padding: 20px;">No hay profesionales registrados.</td>
             </tr>
             {% endfor %}
+
+            <a href="{% url 'lista_chats' %}">💬 Chats</a>
+            <a href="{% url 'registro_profesional' %}">➕ Registrar</a>
         </tbody>
     </table>
 </div>
