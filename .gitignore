@@ -1,6 +1,18 @@
+# Entorno virtual
+v_santiago/
 venv/
 env/
+
+# Base de datos
 db.sqlite3
+*.sqlite3
+
+# Archivos de Python
 __pycache__/
 *.py[cod]
+*$py.class
+
+# Archivos de configuración y otros
 .vscode/
+.DS_Store
+Thumbs.db
