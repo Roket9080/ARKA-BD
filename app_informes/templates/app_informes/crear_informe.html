@@ -1,0 +1,62 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Informe</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
+        <h2>ARKA</h2>
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'lista_informes' %}">📊 Informes</a>
+        <a href="{% url 'crear_informe' %}">➕ Crear</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor-form">
+    <h1>➕ Crear Nuevo Informe</h1>
+    <form method="POST">
+        {% csrf_token %}
+        
+        <div class="campo">
+            <label>📋 Tipo de Atención:</label>
+            <input type="text" name="tipo_atencion" required>
+        </div>
+
+        <div class="campo">
+            <label>👨‍⚕️ Profesional:</label>
+            <input type="text" name="profesional" required>
+        </div>
+
+        <div class="campo">
+            <label>📍 Zona Geográfica:</label>
+            <input type="text" name="zona_geografica" required>
+        </div>
+
+        <div class="campo">
+            <label>👤 Usuario:</label>
+            <input type="text" name="usuario" required>
+        </div>
+
+        <div class="campo">
+            <label>📝 Resumen:</label>
+            <textarea name="resumen" required></textarea>
+        </div>
+
+        <div class="acciones-form">
+            <button type="submit" class="btn-guardar">💾 Registar</button>
+            <a href="{% url 'lista_informes' %}" class="btn-cancelar">❌ Cancelar</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

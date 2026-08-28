@@ -1,0 +1,68 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Informes</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="logo">
+        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
+        <h2>ARKA</h2>
+    </div>
+    <div class="nav-links">
+        <a href="{% url 'lista_informes' %}">📊 Informes</a>
+        <a href="{% url 'crear_informe' %}">➕ Crear</a>
+        <a href="/admin/">⚙️ Admin</a>
+    </div>
+</nav>
+
+<div class="contenedor">
+    <header class="cabecera">
+        <h1>📊 Lista de Informes</h1>
+        <a href="{% url 'crear_informe' %}" class="btn-primario">➕ Crear Nuevo Informe</a>
+    </header>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>Tipo</th>
+                <th>Profesional</th>
+                <th>Zona</th>
+                <th>Usuario</th>
+                <th>Resumen</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for informe in informes %}
+            <tr>
+                <td>{{ informe.id_informe }}</td>
+                <td>{{ informe.fecha_atencion }}</td>
+                <td>{{ informe.tipo_atencion }}</td>
+                <td>{{ informe.profesional }}</td>
+                <td>{{ informe.zona_geografica }}</td>
+                <td>{{ informe.usuario }}</td>
+                <td>{{ informe.resumen }}</td>
+                <td>
+                    <a href="{% url 'editar_informe' informe.id_informe %}" class="btn-editar">✏️ Editar</a>
+                    <a href="{% url 'eliminar_informe' informe.id_informe %}" class="btn-eliminar">🗑️ Eliminar</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="8" style="text-align: center; padding: 20px;">No hay informes.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>
