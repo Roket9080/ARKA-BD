@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Ubicaciones de pacientes - ARKA</title>
+    <title>Evaluaciones emocionales - ARKA</title>
 
     <style>
         body {
@@ -14,7 +14,7 @@
         }
 
         .contenedor {
-            max-width: 1000px;
+            max-width: 1200px;
             margin: auto;
             background: white;
             padding: 30px;
@@ -62,16 +62,6 @@
             background: #f3f8fb;
         }
 
-        .autorizado {
-            color: green;
-            font-weight: bold;
-        }
-
-        .no-autorizado {
-            color: red;
-            font-weight: bold;
-        }
-
         .sin-datos {
             text-align: center;
             padding: 30px;
@@ -84,10 +74,10 @@
 
 <div class="contenedor">
 
-    <h1>Ubicaciones de pacientes</h1>
+    <h1>Evaluaciones emocionales</h1>
 
-    <a href="{% url 'registrar_ubicacion' %}" class="boton">
-        + Nueva ubicación
+    <a href="{% url 'crear_evaluacion' %}" class="boton">
+        + Nueva evaluación
     </a>
 
     <div class="tabla-contenedor">
@@ -97,42 +87,38 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Paciente</th>
-                    <th>Latitud</th>
-                    <th>Longitud</th>
-                    <th>Autorización</th>
-                    <th>Motivo</th>
+                    <th>Usuario</th>
+                    <th>Profesional</th>
+                    <th>Estado afectivo</th>
+                    <th>Nivel de riesgo</th>
+                    <th>Necesidades detectadas</th>
+                    <th>Observaciones</th>
+                    <th>Recomendaciones</th>
                     <th>Fecha</th>
                 </tr>
             </thead>
 
             <tbody>
 
-                {% for ubicacion in ubicaciones %}
+                {% for evaluacion in evaluaciones %}
 
                 <tr>
-                    <td>{{ ubicacion.id }}</td>
-                    <td>{{ ubicacion.paciente }}</td>
-                    <td>{{ ubicacion.latitud }}</td>
-                    <td>{{ ubicacion.longitud }}</td>
-
-                    <td>
-                        {% if ubicacion.autorizacion %}
-                            <span class="autorizado">Autorizado</span>
-                        {% else %}
-                            <span class="no-autorizado">No autorizado</span>
-                        {% endif %}
-                    </td>
-
-                    <td>{{ ubicacion.motivo }}</td>
-                    <td>{{ ubicacion.fecha_ubicacion }}</td>
+                    <td>{{ evaluacion.id }}</td>
+                    <td>{{ evaluacion.usuario }}</td>
+                    <td>{{ evaluacion.profesional }}</td>
+                    <td>{{ evaluacion.estado_afectivo }}</td>
+                    <td>{{ evaluacion.nivel_riesgo }}</td>
+                    <td>{{ evaluacion.necesidades_detectadas }}</td>
+                    <td>{{ evaluacion.observaciones }}</td>
+                    <td>{{ evaluacion.recomendaciones }}</td>
+                    <td>{{ evaluacion.fecha }}</td>
                 </tr>
 
                 {% empty %}
 
                 <tr>
-                    <td colspan="7" class="sin-datos">
-                        No hay ubicaciones registradas.
+                    <td colspan="9" class="sin-datos">
+                        No hay evaluaciones registradas.
                     </td>
                 </tr>
 
