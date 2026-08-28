@@ -1,0 +1,156 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #f4f6f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.chat-container {
+    width: 100%;
+    max-width: 700px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 80vh;
+}
+
+/* Chat Grupal Header */
+.chat-header.grupal {
+    background-color: #39a900;
+    color: white;
+    padding: 16px 20px;
+    text-align: center;
+}
+
+/* Chat Personal Header */
+.chat-header.personal {
+    background-color: #007bff;
+    color: white;
+    padding: 16px 20px;
+    text-align: center;
+}
+
+.chat-header h2 {
+    font-size: 1.4rem;
+    font-weight: 600;
+}
+
+.chat-header p {
+    font-size: 0.85rem;
+    opacity: 0.9;
+    margin-top: 4px;
+}
+
+.chat-box {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background-color: #f8f9fa;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.mensaje {
+    background-color: #ffffff;
+    padding: 12px 16px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    max-width: 85%;
+}
+
+.mensaje.grupal {
+    border-left: 4px solid #39a900;
+}
+
+.mensaje.personal {
+    border-left: 4px solid #007bff;
+}
+
+.mensaje strong {
+    color: #2c3e50;
+    font-size: 0.95rem;
+}
+
+.mensaje p {
+    color: #4a5568;
+    margin-top: 4px;
+    font-size: 0.95rem;
+    word-wrap: break-word;
+}
+
+.mensaje small {
+    color: #a0aec0;
+    font-size: 0.75rem;
+    float: right;
+    margin-top: 4px;
+}
+
+.chat-form {
+    display: flex;
+    padding: 15px;
+    background-color: #ffffff;
+    border-top: 1px solid #e2e8f0;
+    gap: 10px;
+}
+
+.chat-form input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 1px solid #cbd5e0;
+    border-radius: 20px;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.chat-form.grupal input:focus {
+    border-color: #39a900;
+}
+
+.chat-form.personal input:focus {
+    border-color: #007bff;
+}
+
+.chat-form button {
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.chat-form.grupal button {
+    background-color: #39a900;
+}
+
+.chat-form.grupal button:hover {
+    background-color: #2e8800;
+}
+
+.chat-form.personal button {
+    background-color: #007bff;
+}
+
+.chat-form.personal button:hover {
+    background-color: #0056b3;
+}
+
+.empty-chat {
+    text-align: center;
+    color: #a0aec0;
+    margin: auto;
+}
