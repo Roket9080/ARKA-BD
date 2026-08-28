@@ -66,11 +66,6 @@ def registrar_ubicacion(request):
 
 
 def listar_ubicaciones(request):
-    print("================================")
-    print("ESTOY EN listar_ubicaciones")
-    print("UBICACIONES:", UbicacionPaciente.objects.all())
-    print("================================")
-
     ubicaciones = UbicacionPaciente.objects.all()
 
     return render(
