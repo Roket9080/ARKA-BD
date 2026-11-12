@@ -27,4 +27,4 @@ def ver_chat(request, pk):
         nuevo_mensaje.save()
         return redirect('ver_chat', pk=pk)
     profesionales = Profesional.objects.all()
-    return render(request, 'app_chat/ver_chat.html', {'chat': chat, 'mensajes': mensajes, 'profesionales': profissionais})
+    return render(request, 'app_chat/ver_chat.html', {'chat': chat, 'mensajes': mensajes, 'profesionales': profesionales})

@@ -4,57 +4,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat Grupal</title>
-  <link rel="stylesheet" href="{% static 'estilos.css' %}">
+    <title>Chat: {{ chat.nombre_grupo }} - ARKA</title>
+    <link rel="stylesheet" href="{% static 'app_sebas/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'app_chat/estilos.css' %}">
 </head>
 <body>
 
 <nav class="navbar">
     <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
-        <h2>ARKA</h2>
+        <img src="{% static 'recursos/imagenes/fotos/ARKA.jpeg' %}" alt="Logo ARKA">
     </div>
     <div class="nav-links">
         <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
-        <a href="{% url 'lista_chats' %}">💬 Chats</a>
-        <a href="/admin/">⚙️ Admin</a>
+        <a href="{% url 'lista_chats' %}" aria-current="page">💬 Chats</a>
+        <a href="{% url 'admin:index' %}">⚙️ Admin</a>
     </div>
 </nav>
 
 <div class="contenedor-chat">
-    <h1>💬 {{ chat.nombre_grupo }}</h1>
+    
+    <header class="cabecera-chat">
+        <h1>💬 {{ chat.nombre_grupo }}</h1>
+        <a href="{% url 'lista_chats' %}" class="btn-volver">↩ Salir del Chat</a>
+    </header>
 
+    <!-- Caja donde aparecen los mensajes -->
     <div class="chat-box">
         {% for mensaje in mensajes %}
         <div class="mensaje">
-            <strong>{{ mensaje.autor.nombres }} {{ mensaje.autor.apellidos }}:</strong>
+            <div class="mensaje-header">
+                <strong>👤 {{ mensaje.autor.nombres }} {{ mensaje.autor.apellidos }}</strong>
+                <small>{{ mensaje.fecha_envio|date:"d M Y, H:i" }}</small>
+            </div>
             <p>{{ mensaje.contenido }}</p>
-            <small>{{ mensaje.fecha_envio }}</small>
         </div>
         {% empty %}
-        <p style="text-align: center;">No hay mensajes aún.</p>
+        <div class="chat-vacio">
+            <p>No hay mensajes aún. ¡Sé el primero en escribir!</p>
+        </div>
         {% endfor %}
     </div>
 
-    <form method="POST">
+    <!-- Formulario para enviar mensaje (Diseño de barra inferior) -->
+    <form method="POST" class="form-chat">
         {% csrf_token %}
-        <div class="campo">
-            <label>Profesional que escribe:</label>
-            <select name="autor_id" required>
+        
+        <div class="chat-controls">
+            <select name="autor_id" required class="select-user" title="Selecciona quién escribe">
+                <option value="" disabled selected>¿Quién escribe?</option>
                 {% for profesional in profesionales %}
-                    <option value="{{ profesional.id_profesional }}">{{ profesional.nombres }} {{ profesional.apellidos }}</option>
+                    <option value="{{ profesional.id_profesional }}">
+                        {{ profesional.nombres }} {{ profesional.apellidos }}
+                    </option>
                 {% endfor %}
             </select>
-        </div>
-
-        <div class="campo">
-            <label>Contenido:</label>
-            <textarea name="contenido" required></textarea>
-        </div>
-
-        <div class="acciones-form">
-            <button type="submit" class="btn-guardar">📨 Enviar</button>
-            <a href="{% url 'lista_chats' %}" class="btn-cancelar">❌ Cancelar</a>
+            
+            <textarea name="contenido" required placeholder="Escribe tu mensaje aquí..." rows="1" class="input-mensaje"></textarea>
+            
+            <button type="submit" class="btn-enviar" title="Enviar mensaje">
+                ➤
+            </button>
         </div>
     </form>
 </div>

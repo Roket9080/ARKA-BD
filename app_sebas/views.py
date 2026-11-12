@@ -25,7 +25,9 @@ def editar_profesional(request, pk):
     profesional = get_object_or_404(Profesional, pk=pk)
     if request.method == 'POST':
         profesional.identificador = request.POST.get('identificador')
-        profesional.contrasena = request.POST.get('contrasena')
+        contrasena = request.POST.get('contrasena')
+        if contrasena:
+            profesional.contrasena = contrasena
         profesional.nombres = request.POST.get('nombres')
         profesional.apellidos = request.POST.get('apellidos')
         profesional.correo = request.POST.get('correo')

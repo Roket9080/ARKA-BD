@@ -5,19 +5,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Profesionales</title>
-    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'app_sebas/estilos.css' %}">
 </head>
 <body>
 
 <nav class="navbar">
     <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
-        <h2>ARKA</h2>
+        <img src="{% static 'recursos/imagenes/fotos/ARKA.jpeg' %}" alt="Logo ARKA">
     </div>
     <div class="nav-links">
-        <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
+        <a href="{% url 'lista_profesional' %}" aria-current="page">👨‍⚕️ Profesionales</a>
         <a href="{% url 'registro_profesional' %}">➕ Registrar</a>
-        <a href="/admin/">⚙️ Admin</a>
+        <a href="{% url 'lista_chats' %}">💬 Chats</a>
+        <a href="{% url 'admin:index' %}">⚙️ Admin</a>
     </div>
 </nav>
 
@@ -27,6 +27,7 @@
         <a href="{% url 'registro_profesional' %}" class="btn-primario">➕ Registrar Nuevo</a>
     </header>
 
+    <div class="tabla-responsive">
     <table>
         <thead>
             <tr>
@@ -59,10 +60,9 @@
             </tr>
             {% endfor %}
 
-            <a href="{% url 'lista_chats' %}">💬 Chats</a>
-            <a href="{% url 'registro_profesional' %}">➕ Registrar</a>
         </tbody>
     </table>
+    </div>
 </div>
 
 </body>

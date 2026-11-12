@@ -4,45 +4,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Chat</title>
-    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+    <title>Crear Nuevo Chat - ARKA</title>
+    <link rel="stylesheet" href="{% static 'app_sebas/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'app_chat/estilos.css' %}">
 </head>
 <body>
 
 <nav class="navbar">
     <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
-        <h2>ARKA</h2>
+        <img src="{% static 'recursos/imagenes/fotos/ARKA.jpeg' %}" alt="Logo ARKA">
     </div>
     <div class="nav-links">
         <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
-        <a href="{% url 'lista_chats' %}">💬 Chats</a>
-        <a href="/admin/">⚙️ Admin</a>
+        <a href="{% url 'lista_chats' %}" aria-current="page">💬 Chats</a>
+        <a href="{% url 'admin:index' %}">⚙️ Admin</a>
     </div>
 </nav>
 
 <div class="contenedor-form">
-    <h1>➕ Crear Nuevo Chat</h1>
+    <header class="cabecera">
+        <h1>➕ Crear Nuevo Chat</h1>
+    </header>
+
+    <!-- Formulario de Django -->
     <form method="POST">
         {% csrf_token %}
         
-        <div class="campo">
-            <label>Nombre del Grupo:</label>
-            <input type="text" name="nombre_grupo" required>
-        </div>
-
-        <div class="campo">
-            <label>Profesional que crea el chat:</label>
-            <select name="creado_por_id" required>
-                {% for profesional in profesionales %}
-                    <option value="{{ profesional.id_profesional }}">{{ profesional.nombres }} {{ profesional.apellidos }}</option>
-                {% endfor %}
-            </select>
-        </div>
+        {% for field in form %}
+            <div class="campo">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                    <span class="mensaje-error">{{ field.errors.0 }}</span>
+                {% endif %}
+            </div>
+        {% endfor %}
 
         <div class="acciones-form">
-            <button type="submit" class="btn-guardar">💾 Registar</button>
-            <a href="{% url 'lista_chats' %}" class="btn-cancelar">❌ Cancelar</a>
+            <a href="{% url 'lista_chats' %}" class="btn-cancelar">Cancelar</a>
+            <button type="submit" class="btn-guardar">Guardar Chat</button>
         </div>
     </form>
 </div>

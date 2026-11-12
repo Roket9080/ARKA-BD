@@ -4,75 +4,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro Profesional</title>
-    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+    <title>{% if profesional %}Editar{% else %}Registrar{% endif %} Profesional</title>
+    <link rel="stylesheet" href="{% static 'app_sebas/estilos.css' %}">
 </head>
 <body>
 
 <nav class="navbar">
     <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
-        <h2>ARKA</h2>
+        <img src="{% static 'recursos/imagenes/fotos/ARKA.jpeg' %}" alt="Logo ARKA">
     </div>
     <div class="nav-links">
         <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
-        <a href="{% url 'registro_profesional' %}">➕ Registrar</a>
-        <a href="/admin/">⚙️ Admin</a>
+        <a href="{% url 'registro_profesional' %}" {% if not profesional %}aria-current="page"{% endif %}>➕ Registrar</a>
+        <a href="{% url 'lista_chats' %}">💬 Chats</a>
+        <a href="{% url 'admin:index' %}">⚙️ Admin</a>
     </div>
 </nav>
 
 <div class="contenedor-form">
-    <h1>➕ Registro de Profesionales en Salud</h1>
+    <h1>{% if profesional %}✏️ Editar profesional{% else %}➕ Registro de Profesionales en Salud{% endif %}</h1>
     <form method="POST">
         {% csrf_token %}
         
         <div class="campo">
-            <label>Identificador (Único):</label>
-            <input type="text" name="identificador" required>
+            <label for="identificador">Identificador (Único):</label>
+            <input id="identificador" type="text" name="identificador" value="{{ profesional.identificador|default:'' }}" required>
         </div>
 
         <div class="campo">
-            <label>Contraseña:</label>
-            <input type="password" name="contrasena" required>
+            <label for="contrasena">Contraseña:</label>
+            <input id="contrasena" type="password" name="contrasena" {% if not profesional %}required{% else %}placeholder="Deja en blanco para conservar la contraseña actual"{% endif %}>
         </div>
 
         <div class="campo">
-            <label>Nombres Completos:</label>
-            <input type="text" name="nombres" required>
+            <label for="nombres">Nombres Completos:</label>
+            <input id="nombres" type="text" name="nombres" value="{{ profesional.nombres|default:'' }}" required>
         </div>
 
         <div class="campo">
-            <label>Apellidos Completos:</label>
-            <input type="text" name="apellidos" required>
+            <label for="apellidos">Apellidos Completos:</label>
+            <input id="apellidos" type="text" name="apellidos" value="{{ profesional.apellidos|default:'' }}" required>
         </div>
 
         <div class="campo">
-            <label>Correo Electrónico:</label>
-            <input type="email" name="correo" required>
+            <label for="correo">Correo Electrónico:</label>
+            <input id="correo" type="email" name="correo" value="{{ profesional.correo|default:'' }}" required>
         </div>
 
         <div class="campo">
-            <label>Número de Teléfono:</label>
-            <input type="text" name="telefono" required>
+            <label for="telefono">Número de Teléfono:</label>
+            <input id="telefono" type="text" name="telefono" value="{{ profesional.telefono|default:'' }}" required>
         </div>
 
         <div class="campo">
-            <label>Contacto de Emergencia:</label>
-            <input type="text" name="contacto_emergencia" required>
+            <label for="contacto_emergencia">Contacto de Emergencia:</label>
+            <input id="contacto_emergencia" type="text" name="contacto_emergencia" value="{{ profesional.contacto_emergencia|default:'' }}" required>
         </div>
 
         <div class="campo">
-            <label>Disponibilidad y Horarios:</label>
-            <input type="text" name="disponibilidad_horarios" required>
+            <label for="disponibilidad_horarios">Disponibilidad y Horarios:</label>
+            <input id="disponibilidad_horarios" type="text" name="disponibilidad_horarios" value="{{ profesional.disponibilidad_horarios|default:'' }}" required>
         </div>
 
         <div class="campo">
-            <label>Dirección:</label>
-            <input type="text" name="direccion" required>
+            <label for="direccion">Dirección:</label>
+            <input id="direccion" type="text" name="direccion" value="{{ profesional.direccion|default:'' }}" required>
         </div>
 
         <div class="acciones-form">
-            <button type="submit" class="btn-guardar">💾 Registar</button>
+            <button type="submit" class="btn-guardar">{% if profesional %}💾 Guardar cambios{% else %}💾 Registrar{% endif %}</button>
             <a href="{% url 'lista_profesional' %}" class="btn-cancelar">❌ Cancelar</a>
         </div>
     </form>

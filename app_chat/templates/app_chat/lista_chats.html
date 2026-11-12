@@ -4,20 +4,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Chats</title>
-    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+    <title>Lista de Chats - ARKA</title>
+    <link rel="stylesheet" href="{% static 'app_sebas/estilos.css' %}">
+    <link rel="stylesheet" href="{% static 'app_chat/estilos.css' %}">
 </head>
 <body>
 
 <nav class="navbar">
     <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
-        <h2>ARKA</h2>
+        <img src="{% static 'recursos/imagenes/fotos/ARKA.jpeg' %}" alt="Logo ARKA">
     </div>
     <div class="nav-links">
         <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
-        <a href="{% url 'lista_chats' %}">💬 Chats</a>
-        <a href="/admin/">⚙️ Admin</a>
+        <a href="{% url 'lista_chats' %}" aria-current="page">💬 Chats</a>
+        <a href="{% url 'admin:index' %}">⚙️ Admin</a>
     </div>
 </nav>
 
@@ -27,6 +27,7 @@
         <a href="{% url 'crear_chat' %}" class="btn-primario">➕ Crear Nuevo Chat</a>
     </header>
 
+    <div class="tabla-responsive">
     <table>
         <thead>
             <tr>
@@ -39,20 +40,24 @@
         <tbody>
             {% for chat in chats %}
             <tr>
-                <td>{{ chat.id_chat }}</td>
-                <td>{{ chat.nombre_grupo }}</td>
+                <td>#{{ chat.id_chat }}</td>
+                <td><strong>{{ chat.nombre_grupo }}</strong></td>
                 <td>{{ chat.fecha_creacion }}</td>
                 <td>
-                    <a href="{% url 'ver_chat' chat.id_chat %}" class="btn-editar">💬 Entrar</a>
+                    <!-- Cambié la clase a btn-entrar para que resalte -->
+                    <a href="{% url 'ver_chat' chat.id_chat %}" class="btn-entrar">💬 Entrar</a>
                 </td>
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4" style="text-align: center; padding: 20px;">No hay chats creados.</td>
+                <td colspan="4" style="text-align: center; padding: 30px; color: var(--text-muted);">
+                    No hay chats creados aún.
+                </td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
+    </div>
 </div>
 
 </body>

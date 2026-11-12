@@ -1,17 +1,32 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Eliminar Profesional</title>
+    <link rel="stylesheet" href="{% static 'app_sebas/estilos.css' %}">
 </head>
 <body>
-    <h1>¿Estás seguro?</h1>
-    <p>Vas a eliminar al profesional: <strong>{{ profesional.nombres }} {{ profesional.apellidos }}</strong></p>
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit">Sí, eliminar</button>
-        <a href="{% url 'lista_profesional' %}">Cancelar</a>
-    </form>
+    <nav class="navbar">
+        <a class="logo" href="{% url 'lista_profesional' %}">
+            <img src="{% static 'recursos/imagenes/fotos/ARKA.jpeg' %}" alt="Logo ARKA">
+        </a>
+        <div class="nav-links">
+            <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
+            <a href="{% url 'registro_profesional' %}">➕ Registrar</a>
+            <a href="{% url 'lista_chats' %}">💬 Chats</a>
+            <a href="{% url 'admin:index' %}">⚙️ Admin</a>
+        </div>
+    </nav>
+    <main class="confirmacion">
+        <h1>¿Eliminar profesional?</h1>
+        <p>Esta acción eliminará a <strong>{{ profesional.nombres }} {{ profesional.apellidos }}</strong>.</p>
+        <form method="POST" class="form-confirmacion">
+            {% csrf_token %}
+            <button type="submit" class="btn-eliminar">Sí, eliminar</button>
+            <a href="{% url 'lista_profesional' %}" class="btn-cancelar">Cancelar</a>
+        </form>
+    </main>
 </body>
 </html>

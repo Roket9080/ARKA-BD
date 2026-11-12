@@ -5,36 +5,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atención Profesional</title>
-    <style>
-        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #f0f4f8, #ffffff); padding: 20px; }
-        h1 { color: #2c3e50; text-align: center; }
-        form { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        label { display: block; margin-bottom: 5px; color: #34495e; font-weight: bold; }
-        input, textarea, select { width: 100%; padding: 8px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; }
-        button { background-color: #2980b9; color: white; padding: 10px 20px; border: none; border-radius: 4px; cursor: pointer; font-weight: bold; }
-        button:hover { opacity: 0.8; }
-        .btn-cancelar { background-color: #7f8c8d; padding: 10px 20px; text-decoration: none; color: white; border-radius: 4px; display: inline-block; margin-left: 10px; }
-    </style>
+    <link rel="stylesheet" href="{% static 'app_sebas/estilos.css' %}">
 </head>
 <body>
-    <h1>Atención de un Profesional en Salud</h1>
-    <form method="POST">
-        {% csrf_token %}
-        <label>Profesional:</label>
-        <select name="profesional_id" required>
-            {% for profesional in profesionales %}
-                <option value="{{ profesional.id_profesional }}">{{ profesional.nombres }} {{ profesional.apellidos }}</option>
-            {% endfor %}
-        </select>
-        <label>Motivo de Atención:</label>
-        <textarea name="motivo" required></textarea>
-        <label>Diagnóstico:</label>
-        <textarea name="diagnostico"></textarea>
-        <label>Plan de Intervención:</label>
-        <textarea name="plan_intervencion"></textarea>
-        
-        <button type="submit">Registrar Atención</button>
-        <a href="{% url 'lista_profesional' %}" class="btn-cancelar">Cancelar</a>
-    </form>
+    <nav class="navbar">
+        <a class="logo" href="{% url 'lista_profesional' %}">
+            <img src="{% static 'recursos/imagenes/fotos/ARKA.jpeg' %}" alt="Logo ARKA">
+        </a>
+        <div class="nav-links">
+            <a href="{% url 'lista_profesional' %}">👨‍⚕️ Profesionales</a>
+            <a href="{% url 'registro_profesional' %}">➕ Registrar</a>
+            <a href="{% url 'lista_chats' %}">💬 Chats</a>
+            <a href="{% url 'admin:index' %}">⚙️ Admin</a>
+        </div>
+    </nav>
+    <main class="contenedor-form">
+        <h1>Atención de un Profesional en Salud</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <div class="campo">
+                <label for="profesional_id">Profesional:</label>
+                <select id="profesional_id" name="profesional_id" required>
+                    {% for profesional in profesionales %}
+                        <option value="{{ profesional.id_profesional }}">{{ profesional.nombres }} {{ profesional.apellidos }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="campo">
+                <label for="motivo">Motivo de Atención:</label>
+                <textarea id="motivo" name="motivo" required></textarea>
+            </div>
+            <div class="campo">
+                <label for="diagnostico">Diagnóstico:</label>
+                <textarea id="diagnostico" name="diagnostico"></textarea>
+            </div>
+            <div class="campo">
+                <label for="plan_intervencion">Plan de Intervención:</label>
+                <textarea id="plan_intervencion" name="plan_intervencion"></textarea>
+            </div>
+            <div class="acciones-form">
+                <button type="submit" class="btn-guardar">Registrar Atención</button>
+                <a href="{% url 'lista_profesional' %}" class="btn-cancelar">Cancelar</a>
+            </div>
+        </form>
+    </main>
 </body>
 </html>
