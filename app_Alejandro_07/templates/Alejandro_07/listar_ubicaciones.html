@@ -6,13 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Ubicaciones de pacientes - ARKA</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'app_Alejandro_07/arka.css' %}">
+    <link rel="stylesheet" href="{% static 'app_Alejandro_07/arka.css' %}?v=3">
 </head>
 
 <body>
 
 <div class="contenedor">
 
+    <img class="logo-arka" src="{% static 'app_Alejandro_07/arka-logo.png' %}" alt="Logo de ARKA">
     <h1>Ubicaciones de pacientes</h1>
 
     <a href="{% url 'registrar_ubicacion' %}" class="boton">

@@ -26,6 +26,7 @@ body {
 }
 
 .contenedor {
+    position: relative;
     max-width: 1000px;
     margin: auto;
     padding: 30px;
@@ -33,6 +34,16 @@ body {
     border-radius: 18px;
     background: var(--superficie);
     box-shadow: 0 16px 48px rgba(0, 0, 0, 0.3);
+}
+
+.logo-arka {
+    position: absolute;
+    top: 18px;
+    left: 18px;
+    width: 56px;
+    height: 56px;
+    border-radius: 8px;
+    object-fit: cover;
 }
 
 .contenedor-evaluacion-form {
