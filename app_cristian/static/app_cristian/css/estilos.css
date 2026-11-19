@@ -1,0 +1,890 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* =====================================
+   VARIABLES DE COLORES
+===================================== */
+
+:root {
+    --fondo: #09070e;
+    --tarjeta: #120e1b;
+    --morado: #a855f7;
+    --morado-claro: #c89bf5;
+    --azul: #06b6d4;
+    --rojo: #e11d48;
+    --blanco: #f8f7fc;
+    --gris: #a5a1b2;
+    --borde: #292332;
+}
+
+/* =====================================
+   CONFIGURACIÓN GENERAL
+===================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--fondo);
+    color: var(--blanco);
+    line-height: 1.7;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font-family: inherit;
+}
+
+::selection {
+    background: var(--morado);
+    color: white;
+}
+
+/* =====================================
+   BARRA DE NAVEGACIÓN
+===================================== */
+
+header {
+    position: sticky;
+    top: 10px;
+    z-index: 1000;
+    margin: 15px auto;
+    width: 95%;
+    max-width: 1500px;
+    background: rgba(18, 14, 27, 0.95);
+    border: 1px solid var(--borde);
+    border-radius: 20px;
+    backdrop-filter: blur(15px);
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 15px 25px;
+}
+
+/* =====================================
+   LOGO ARKA
+===================================== */
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: #f5ecff;
+}
+
+.logo-icono {
+    width: 52px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(168, 85, 247, 0.10);
+    border: 1px solid rgba(200, 155, 245, 0.25);
+    border-radius: 16px;
+    box-shadow:
+        0 0 18px rgba(168, 85, 247, 0.25),
+        inset 0 0 12px rgba(168, 85, 247, 0.08);
+    backdrop-filter: blur(6px);
+    flex-shrink: 0;
+}
+
+.angelito,
+.logo-angel {
+    width: 34px;
+    height: 34px;
+    fill: none;
+    color: #d8b4fe;
+    stroke: #d8b4fe;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(
+        0 0 6px rgba(216, 180, 254, 0.55)
+    );
+}
+
+.logo-icono:hover {
+    box-shadow: 0 0 25px #a855f750;
+}
+
+/* =====================================
+   BOTONES GENERALES
+===================================== */
+
+.boton {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 13px 24px;
+    border: none;
+    border-radius: 12px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    text-align: center;
+    transition: 0.3s ease;
+}
+
+.boton:hover {
+    transform: translateY(-3px);
+}
+
+.boton:active {
+    transform: scale(0.97);
+}
+
+.boton:focus-visible,
+a:focus-visible,
+button:focus-visible {
+    outline: 3px solid var(--morado-claro);
+    outline-offset: 5px;
+}
+
+/* BOTÓN MORADO Y AZUL */
+
+.boton-primario {
+    color: white;
+    background: linear-gradient(
+        120deg,
+        #9333ea,
+        #087ea4
+    );
+    box-shadow: 0 5px 25px #9333ea35;
+}
+
+.boton-primario:hover {
+    box-shadow: 0 5px 30px #9333ea60;
+}
+
+/* BOTÓN SECUNDARIO */
+
+.boton-secundario {
+    color: white;
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+}
+
+.boton-secundario:hover {
+    background: #21172e;
+    border-color: var(--morado);
+}
+
+/* BOTÓN ROJO DE EMERGENCIA */
+
+.boton-emergencia {
+    color: white;
+    background: linear-gradient(
+        120deg,
+        #e11d48,
+        #a51036
+    );
+    box-shadow: 0 5px 25px #e11d4825;
+}
+
+.boton-emergencia:hover {
+    background: linear-gradient(
+        120deg,
+        #f32350,
+        #bd123e
+    );
+    box-shadow: 0 5px 30px #e11d4860;
+}
+
+/* ICONOS INTERNOS DE LOS BOTONES */
+
+.boton i,
+.tarjeta .boton i,
+.panel-emergencia .boton i {
+    font-size: 16px;
+    margin: 0;
+    color: inherit;
+}
+
+/* =====================================
+   PRESENTACIÓN PRINCIPAL
+===================================== */
+
+.hero {
+    max-width: 1300px;
+    margin: auto;
+    padding: 90px 5%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero-contenido {
+    width: 100%;
+}
+
+.etiqueta {
+    display: inline-block;
+    color: var(--morado-claro);
+    background: #201527;
+    border: 1px solid #39294b;
+    padding: 6px 15px;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 5vw, 65px);
+    line-height: 1.12;
+    letter-spacing: -2px;
+    margin-bottom: 22px;
+}
+
+.degradado {
+    background: linear-gradient(
+        90deg,
+        #d8a4ff,
+        #9270ef
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+}
+
+.hero p {
+    color: var(--gris);
+    max-width: 600px;
+    margin-bottom: 30px;
+    font-size: 16px;
+}
+
+.acciones {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+/* =====================================
+   ÁNGEL PRINCIPAL
+===================================== */
+
+.hero-imagen {
+    display: grid;
+    place-items: center;
+    min-height: 320px;
+    background: radial-gradient(
+        circle,
+        #35204d,
+        transparent 70%
+    );
+}
+
+.circulo {
+    width: 260px;
+    height: 260px;
+    border: 1px solid #67468b;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: #1d102b;
+    box-shadow:
+        0 0 80px #9333ea30,
+        inset 0 0 35px #9333ea15;
+    position: relative;
+}
+
+.circulo::before {
+    content: "";
+    position: absolute;
+    inset: -15px;
+    border: 1px dashed #67468b80;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.angel-principal,
+.icono-angel {
+    width: 175px;
+    height: 175px;
+    fill: none;
+    color: #d8b4fe;
+    stroke: #d8b4fe;
+    stroke-width: 2.2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    filter: drop-shadow(
+        0 0 15px rgba(168, 85, 247, 0.65)
+    );
+    animation: flotar 4s ease-in-out infinite;
+}
+
+@keyframes flotar {
+    0%, 100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* =====================================
+   SECCIONES GENERALES
+===================================== */
+
+.seccion {
+    max-width: 1400px;
+    margin: auto;
+    padding: 65px 5%;
+}
+
+.titulo-seccion {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.titulo-seccion h2 {
+    font-size: clamp(25px, 4vw, 36px);
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.titulo-seccion p {
+    color: var(--gris);
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+/* =====================================
+   TARJETAS Y MÓDULOS
+===================================== */
+
+.tarjetas {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    align-items: stretch;
+}
+
+.dos-columnas {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.tarjeta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 22px;
+    transition: 0.3s ease;
+}
+
+.tarjeta:hover {
+    transform: translateY(-5px);
+    border-color: #67468b;
+    box-shadow: 0 10px 30px #9333ea15;
+}
+
+.tarjeta > i {
+    display: inline-block;
+    font-size: 35px;
+    color: var(--morado-claro);
+    margin-bottom: 20px;
+}
+
+.tarjeta h3 {
+    font-size: 21px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.tarjeta p {
+    font-size: 15px;
+    color: var(--gris);
+    line-height: 1.8;
+    margin-bottom: 20px;
+}
+
+.tarjeta .boton {
+    margin-top: auto;
+}
+
+.numero {
+    display: block;
+    font-size: 35px;
+    color: var(--morado-claro);
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.tarjeta-emergencia > i {
+    color: #fb7185;
+}
+
+/* =====================================
+   PÁGINAS INTERNAS
+===================================== */
+
+.encabezado-pagina {
+    padding: 70px 5% 30px;
+    text-align: center;
+}
+
+.encabezado-pagina h1 {
+    font-size: clamp(32px, 5vw, 50px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+.encabezado-pagina p {
+    color: var(--gris);
+    font-size: 16px;
+    margin: 15px auto 0;
+    max-width: 700px;
+}
+
+/* =====================================
+   ATENCIÓN DE EMERGENCIA
+===================================== */
+
+.panel-emergencia {
+    padding: 45px;
+    text-align: center;
+    background: linear-gradient(
+        145deg,
+        #26101c,
+        #120e1b
+    );
+    border: 1px solid #7f2340;
+    border-radius: 25px;
+    box-shadow: 0 0 30px #e11d4810;
+}
+
+.panel-emergencia > i {
+    display: inline-block;
+    font-size: 55px;
+    color: #fb7185;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px #e11d4840);
+}
+
+.panel-emergencia h2 {
+    font-size: clamp(23px, 4vw, 32px);
+    margin-bottom: 15px;
+    font-weight: 800;
+}
+
+.panel-emergencia p {
+    color: var(--gris);
+    margin: 0 auto 25px;
+    max-width: 750px;
+    font-size: 16px;
+}
+
+.panel-emergencia .boton-emergencia {
+    padding: 16px 28px;
+    font-size: 15px;
+}
+
+/* =====================================
+   BOTÓN FLOTANTE DE EMERGENCIA
+===================================== */
+
+.emergencia-flotante {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: linear-gradient(
+        120deg,
+        #e11d48,
+        #a51036
+    );
+    color: white;
+    border-radius: 50px;
+    padding: 15px 22px;
+    font-size: 14px;
+    font-weight: 700;
+    box-shadow: 0 0 25px #e11d4850;
+    transition: 0.3s ease;
+}
+
+.emergencia-flotante:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 0 35px #e11d4870;
+}
+
+.emergencia-flotante i {
+    font-size: 16px;
+}
+
+/* =====================================
+   FORMULARIOS DE ATENCIÓN EN SALUD
+===================================== */
+
+.contenedor-formulario {
+    max-width: 750px;
+    margin: 30px auto;
+    padding: 35px;
+    background: var(--tarjeta);
+    border: 1px solid var(--borde);
+    border-radius: 22px;
+}
+
+.contenedor-formulario h2 {
+    font-size: 26px;
+    margin-bottom: 15px;
+}
+
+.contenedor-formulario p {
+    color: var(--gris);
+    margin-bottom: 15px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--blanco);
+}
+
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 13px;
+    background: #0b0811;
+    color: white;
+    border: 1px solid #393044;
+    border-radius: 10px;
+    outline: none;
+    font-family: inherit;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    border-color: var(--morado);
+    box-shadow: 0 0 12px #a855f725;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #777181;
+}
+
+textarea {
+    min-height: 130px;
+    resize: vertical;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+    width: auto;
+    accent-color: var(--morado);
+}
+
+/* =====================================
+   MENSAJES INFORMATIVOS
+===================================== */
+
+.mensaje-exito {
+    padding: 15px;
+    background: #10291d;
+    color: #86efac;
+    border: 1px solid #166534;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.mensaje-error {
+    padding: 15px;
+    background: #301019;
+    color: #fda4af;
+    border: 1px solid #9f1239;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+/* =====================================
+   PIE DE PÁGINA
+===================================== */
+
+footer {
+    text-align: center;
+    padding: 40px 20px 95px;
+    border-top: 1px solid var(--borde);
+    color: var(--gris);
+    margin-top: 40px;
+    font-size: 13px;
+}
+
+footer strong {
+    color: var(--morado-claro);
+    font-size: 15px;
+}
+
+footer p {
+    margin-top: 8px;
+}
+
+/* =====================================
+   BARRA DE DESPLAZAMIENTO
+===================================== */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--fondo);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #49335f;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #8652b9;
+}
+
+/* =====================================
+   RESPONSIVE PARA TABLETS
+===================================== */
+
+@media (max-width: 1024px) {
+
+    .hero {
+        gap: 30px;
+        padding: 70px 5%;
+    }
+
+    .tarjetas {
+        gap: 18px;
+    }
+
+    .tarjeta {
+        padding: 25px;
+    }
+
+    .seccion {
+        padding: 50px 5%;
+    }
+}
+
+/* =====================================
+   RESPONSIVE PARA CELULARES
+===================================== */
+
+@media (max-width: 768px) {
+
+    header {
+        width: 96%;
+        top: 8px;
+        border-radius: 16px;
+    }
+
+    nav {
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        padding: 12px 15px;
+        gap: 10px;
+    }
+
+    .logo {
+        font-size: 21px;
+        gap: 8px;
+    }
+
+    .logo-icono {
+        width: 43px;
+        height: 43px;
+        border-radius: 12px;
+    }
+
+    .angelito,
+    .logo-angel {
+        width: 28px;
+        height: 28px;
+    }
+
+    nav .boton-emergencia {
+        padding: 12px 15px;
+        font-size: 12px;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        padding: 50px 5%;
+        text-align: center;
+        gap: 30px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+        letter-spacing: -1px;
+    }
+
+    .hero p {
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 15px;
+    }
+
+    .acciones {
+        justify-content: center;
+    }
+
+    .tarjetas,
+    .dos-columnas {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-imagen {
+        min-height: 260px;
+    }
+
+    .circulo {
+        width: 210px;
+        height: 210px;
+    }
+
+    .angel-principal,
+    .icono-angel {
+        width: 140px;
+        height: 140px;
+    }
+
+    .seccion {
+        padding: 40px 5%;
+    }
+
+    .tarjeta {
+        padding: 25px;
+    }
+
+    .panel-emergencia {
+        padding: 30px 20px;
+    }
+
+    .panel-emergencia .boton-emergencia {
+        width: 100%;
+        max-width: 350px;
+    }
+
+    .encabezado-pagina {
+        padding: 50px 5% 20px;
+    }
+
+    .contenedor-formulario {
+        padding: 25px;
+        margin: 15px auto;
+    }
+
+    .emergencia-flotante {
+        right: 15px;
+        bottom: 15px;
+        font-size: 12px;
+        padding: 13px 18px;
+    }
+}
+
+/* =====================================
+   CELULARES PEQUEÑOS
+===================================== */
+
+@media (max-width: 400px) {
+
+    .logo {
+        font-size: 18px;
+        letter-spacing: 1px;
+    }
+
+    .logo-icono {
+        width: 36px;
+        height: 36px;
+    }
+
+    .angelito,
+    .logo-angel {
+        width: 25px;
+        height: 25px;
+    }
+
+    nav .boton-emergencia {
+        padding: 10px 12px;
+        font-size: 11px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .acciones .boton {
+        width: 100%;
+    }
+
+    .tarjeta .boton {
+        width: 100%;
+    }
+
+    .tarjeta {
+        padding: 22px;
+    }
+}
+
+/* =====================================
+   ACCESIBILIDAD Y MOVIMIENTO REDUCIDO
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+        transition: none !important;
+    }
+}
