@@ -1,0 +1,211 @@
+
+{% extends 'app_cristian/base.html' %}
+
+{% block titulo %}ARKA | Inicio{% endblock %}
+
+{% block contenido %}
+
+<section class="hero">
+
+    <div class="hero-contenido">
+
+        <span class="etiqueta">
+            ● Promoviendo la salud mental
+        </span>
+
+        <h1>
+            Tecnología con propósito
+            <span class="degradado">
+                para cuidar la vida
+            </span>
+        </h1>
+
+        <p>
+            ARKA es una plataforma orientada a la prevención
+            del suicidio, que facilita el acceso a recursos
+            de salud mental, orientación psicológica y
+            servicios de emergencia.
+        </p>
+
+        <div class="acciones">
+
+            <a href="{% url 'requerimiento1' %}"
+               class="boton boton-primario">
+                <i class="fa-solid fa-heart-pulse"></i>
+                Buscar atención
+            </a>
+
+            <a href="{% url 'requerimiento2' %}"
+               class="boton boton-emergencia">
+                <i class="fa-solid fa-phone"></i>
+                Atención inmediata
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="hero-imagen">
+
+        <div class="circulo">
+    <svg class="angel-principal" viewBox="0 0 64 64" aria-label="Ángel protector">
+        <ellipse cx="32" cy="13" rx="8" ry="3"></ellipse>
+        <circle cx="32" cy="21" r="5"></circle>
+
+        <path d="M32 27
+                 C29 29, 27 32, 27 36
+                 L27 42
+                 L37 42
+                 L37 36
+                 C37 32, 35 29, 32 27Z"></path>
+
+        <path d="M27 31
+                 C22 28, 17 29, 15 34
+                 C18 36, 21 37, 25 36"></path>
+
+        <path d="M37 31
+                 C42 28, 47 29, 49 34
+                 C46 36, 43 37, 39 36"></path>
+
+        <path d="M27 34 L22 39"></path>
+        <path d="M37 34 L42 39"></path>
+
+        <path d="M29 42 L25 49"></path>
+        <path d="M35 42 L39 49"></path>
+    </svg>
+</div>
+
+    </div>
+
+</section>
+
+<section class="seccion" id="proceso">
+
+    <div class="titulo-seccion">
+        <h2>
+            ¿Cómo funciona
+            <span class="degradado">ARKA?</span>
+        </h2>
+
+        <p>
+            Un proceso pensado para cuidar tu bienestar.
+        </p>
+    </div>
+
+    <div class="tarjetas">
+
+        <article class="tarjeta">
+            <span class="numero">01</span>
+            <h3>Reconocimiento emocional</h3>
+
+            <p>
+                Identifica tus emociones y reconoce cuándo
+                necesitas buscar apoyo.
+            </p>
+        </article>
+
+        <article class="tarjeta">
+            <span class="numero">02</span>
+            <h3>Atención en salud</h3>
+
+            <p>
+                Consulta recursos de orientación y
+                acompañamiento psicológico.
+            </p>
+        </article>
+
+        <article class="tarjeta">
+            <span class="numero">03</span>
+            <h3>Respuesta ante crisis</h3>
+
+            <p>
+                Accede a las líneas de emergencia y
+                servicios de apoyo disponibles.
+            </p>
+        </article>
+
+    </div>
+
+</section>
+
+<section class="seccion" id="modulos">
+
+    <div class="titulo-seccion">
+
+        <h2>
+            Ecosistema de
+            <span class="degradado">módulos</span>
+        </h2>
+
+        <p>Herramientas para cuidar tu salud mental.</p>
+
+    </div>
+
+    <div class="tarjetas dos-columnas">
+
+        <article class="tarjeta">
+
+            <i class="fa-solid fa-brain"></i>
+
+            <h3>Atención en salud mental</h3>
+
+            <p>
+                Encuentra orientación psicológica,
+                recursos de bienestar emocional y
+                alternativas de atención profesional.
+            </p>
+
+            <a href="{% url 'requerimiento1' %}"
+               class="boton boton-primario">
+                Acceder al módulo
+            </a>
+
+        </article>
+
+        <article class="tarjeta tarjeta-emergencia">
+
+            <i class="fa-solid fa-phone-volume"></i>
+
+            <h3>Botón de emergencia</h3>
+
+            <p>
+                Accede rápidamente a las líneas de
+                atención cuando atravieses una situación
+                de crisis.
+            </p>
+
+            <a href="{% url 'requerimiento2' %}"
+               class="boton boton-emergencia">
+                Buscar ayuda inmediata
+            </a>
+
+        </article>
+
+    </div>
+
+</section>
+
+<section class="seccion">
+
+    <div class="panel-emergencia">
+
+        <i class="fa-solid fa-heart"></i>
+
+        <h2>Tu vida importa</h2>
+
+        <p>
+            No tienes que enfrentar los momentos difíciles
+            sin compañía. Buscar ayuda puede ser el primer
+            paso hacia tu bienestar.
+        </p>
+
+        <a href="{% url 'requerimiento1' %}"
+           class="boton boton-primario">
+            Encontrar apoyo
+        </a>
+
+    </div>
+
+</section>
+
+{% endblock %}

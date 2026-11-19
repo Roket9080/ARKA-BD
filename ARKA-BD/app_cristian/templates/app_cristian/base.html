@@ -1,0 +1,92 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>{% block titulo %}ARKA{% endblock %}</title>
+
+    <link rel="stylesheet"
+          href="{% static 'app_cristian/css/estilos.css' %}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="{% url 'index' %}" class="logo">
+                <span class="logo-icono">
+    <svg class="angelito" viewBox="0 0 64 64" aria-label="Ángel ARKA">
+        <!-- aureola -->
+        <ellipse cx="32" cy="13" rx="8" ry="3"></ellipse>
+
+        <!-- cabeza -->
+        <circle cx="32" cy="21" r="5"></circle>
+
+        <!-- cuerpo -->
+        <path d="M32 27
+                 C29 29, 27 32, 27 36
+                 L27 42
+                 L37 42
+                 L37 36
+                 C37 32, 35 29, 32 27Z"></path>
+
+        <!-- alas -->
+        <path d="M27 31
+                 C22 28, 17 29, 15 34
+                 C18 36, 21 37, 25 36"></path>
+
+        <path d="M37 31
+                 C42 28, 47 29, 49 34
+                 C46 36, 43 37, 39 36"></path>
+
+        <!-- brazos -->
+        <path d="M27 34 L22 39"></path>
+        <path d="M37 34 L42 39"></path>
+
+        <!-- faldón / base -->
+        <path d="M29 42 L25 49"></path>
+        <path d="M35 42 L39 49"></path>
+    </svg>
+</span>
+                ARKA
+            </a>
+
+            <a href="{% url 'requerimiento2' %}"
+               class="boton boton-emergencia">
+                <i class="fa-solid fa-phone"></i>
+                Emergencia
+            </a>
+        </nav>
+    </header>
+
+    <main>
+        {% block contenido %}
+        {% endblock %}
+    </main>
+
+    <a href="{% url 'requerimiento2' %}"
+       class="emergencia-flotante">
+        <i class="fa-solid fa-phone"></i>
+        Necesito ayuda
+    </a>
+
+    <footer>
+        <strong>ARKA | Prevención del Suicidio</strong>
+
+        <p>Promoviendo el bienestar y la salud mental.</p>
+
+        <p>ARKA no sustituye la atención médica profesional.</p>
+
+        <p>© 2026 ARKA - Proyecto de investigación</p>
+    </footer>
+
+</body>
+</html>
