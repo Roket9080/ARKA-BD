@@ -4,6 +4,14 @@ from django.urls import reverse
 from .models import Profesional
 
 
+class InicioTests(TestCase):
+    def test_inicio_redirige_al_formulario_de_registro(self):
+        response = self.client.get('/', follow=True)
+
+        self.assertRedirects(response, reverse('registro_profesional'))
+        self.assertTemplateUsed(response, 'app_sebas/registro_profesional.html')
+
+
 class EditarProfesionalTests(TestCase):
     def setUp(self):
         self.profesional = Profesional.objects.create(

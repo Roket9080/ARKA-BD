@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from .forms import ChatGrupalForm
 from .models import ChatGrupal, MensajeChat
 from app_sebas.models import Profesional
 
@@ -7,14 +8,11 @@ def lista_chats(request):
     return render(request, 'app_chat/lista_chats.html', {'chats': chats})
 
 def crear_chat(request):
-    if request.method == 'POST':
-        nuevo_chat = ChatGrupal()
-        nuevo_chat.nombre_grupo = request.POST.get('nombre_grupo')
-        nuevo_chat.creado_por_id = request.POST.get('creado_por_id')
-        nuevo_chat.save()
+    form = ChatGrupalForm(request.POST or None)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
         return redirect('lista_chats')
-    profesionales = Profesional.objects.all()
-    return render(request, 'app_chat/crear_chat.html', {'profesionales': profesionales})
+    return render(request, 'app_chat/crear_chat.html', {'form': form})
 
 def ver_chat(request, pk):
     chat = get_object_or_404(ChatGrupal, pk=pk)
