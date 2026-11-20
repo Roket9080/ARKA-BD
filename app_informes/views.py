@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import InformeAtencion
 
+def pagina_inicio(request):
+    return render(request, 'app_informes/inicio.html')
+
 def lista_informes(request):
     informes = InformeAtencion.objects.all()
     return render(request, 'app_informes/lista_informes.html', {'informes': informes})
@@ -15,6 +18,7 @@ def crear_informe(request):
         nuevo.resumen = request.POST.get('resumen')
         nuevo.save()
         return redirect('lista_informes')
+    # ESTA LÍNEA ES LA CLAVE: Debe apuntar al nombre exacto del archivo
     return render(request, 'app_informes/crear_informe.html')
 
 def editar_informe(request, pk):

@@ -4,31 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Eliminar Informe</title>
-    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+    <title>ARKA - Eliminar Informe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #09090b; color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+        .navbar-pill { display: flex; justify-content: space-between; align-items: center; background-color: #18181b; border: 1px solid #27272a; border-radius: 50px; padding: 10px 20px; margin: 20px auto; max-width: 1100px; width: 90%; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-img { width: 45px; height: 45px; object-fit: contain; border-radius: 12px; box-shadow: 0 0 12px rgba(139, 92, 246, 0.5); }
+        .logo-text { font-weight: 800; font-size: 1.3rem; margin: 0; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; }
+        .nav-links a:hover, .nav-links a.active { color: white; }
+
+        .contenedor-alerta-wrapper { display: flex; justify-content: center; align-items: center; min-height: 70vh; }
+        .contenedor-alerta { background-color: #18181b; border: 1px solid #27272a; border-radius: 15px; padding: 40px; text-align: center; max-width: 500px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .icono-alerta { font-size: 4rem; margin-bottom: 20px; }
+        .contenedor-alerta h1 { margin-top: 0; }
+        .contenedor-alerta p { color: #a1a1aa; margin-bottom: 30px; }
+        
+        .form-alerta { display: flex; justify-content: center; gap: 15px; }
+        .btn-eliminar-solido { background-color: #ef4444; color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: background 0.3s; }
+        .btn-eliminar-solido:hover { background-color: #dc2626; }
+        .btn-cancelar { background: transparent; color: #a1a1aa; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid #3f3f46; transition: background 0.3s, color 0.3s; }
+        .btn-cancelar:hover { background: #27272a; color: white; }
+    </style>
 </head>
 <body>
 
-<nav class="navbar">
+<nav class="navbar-pill">
     <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
-        <h2>ARKA</h2>
+        <img src="{% static 'logo_arka.png' %}" alt="Logo ARKA" class="logo-img">
+        <h2 class="logo-text">ARKA</h2>
     </div>
     <div class="nav-links">
+        <a href="{% url 'inicio' %}">🏠 Inicio</a>
         <a href="{% url 'lista_informes' %}">📊 Informes</a>
         <a href="{% url 'crear_informe' %}">➕ Crear</a>
         <a href="/admin/">⚙️ Admin</a>
     </div>
 </nav>
 
-<div class="contenedor-alerta">
-    <h1>⚠️ ¿Estás seguro?</h1>
-    <p>Vas a eliminar el informe con ID: <strong>{{ informe.id_informe }}</strong> ({{ informe.usuario }}). Esta acción no se puede deshacer.</p>
-    <form method="POST">
-        {% csrf_token %}
-        <button type="submit" class="btn-eliminar">🗑️ Sí, eliminar</button>
-        <a href="{% url 'lista_informes' %}" class="btn-cancelar">❌ Cancelar</a>
-    </form>
+<div class="contenedor-alerta-wrapper">
+    <div class="contenedor-alerta">
+        <div class="icono-alerta">⚠️</div>
+        <h1>¿Estás seguro?</h1>
+        <p>Vas a eliminar el informe con ID: <strong>#{{ informe.id }}</strong> ({{ informe.usuario }}).<br>Esta acción no se puede deshacer.</p>
+        <form method="POST" class="form-alerta">
+            {% csrf_token %}
+            <button type="submit" class="btn-eliminar-solido">🗑️ Sí, eliminar</button>
+            <a href="{% url 'lista_informes' %}" class="btn-cancelar">❌ Cancelar</a>
+        </form>
+    </div>
 </div>
 
 </body>

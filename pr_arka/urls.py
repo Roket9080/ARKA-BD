@@ -3,5 +3,6 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('informes/', include('app_informes.urls')),
+    # Delegamos TODAS las rutas del proyecto a la app_informes
+    path('', include('app_informes.urls')),
 ]

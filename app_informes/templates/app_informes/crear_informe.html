@@ -4,55 +4,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Informe</title>
-    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+    <title>ARKA - Crear Informe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body { background-color: #09090b; color: white; font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
+        /* Barra de navegación tipo píldora */
+        .navbar-pill { display: flex; justify-content: space-between; align-items: center; background-color: #18181b; border: 1px solid #27272a; border-radius: 50px; padding: 10px 20px; margin: 20px auto; max-width: 1100px; width: 90%; }
+        .logo { display: flex; align-items: center; gap: 12px; }
+        .logo-img { width: 45px; height: 45px; object-fit: contain; border-radius: 12px; box-shadow: 0 0 12px rgba(139, 92, 246, 0.5); }
+        .logo-text { font-weight: 800; font-size: 1.3rem; margin: 0; }
+        .nav-links { display: flex; gap: 15px; }
+        .nav-links a { color: #a1a1aa; text-decoration: none; font-size: 0.9rem; }
+        .nav-links a:hover, .nav-links a.active { color: white; }
+
+        /* Formulario */
+        .contenedor-form { max-width: 800px; margin: 40px auto; background-color: #18181b; border: 1px solid #27272a; border-radius: 15px; padding: 40px; }
+        .form-header { margin-bottom: 30px; border-bottom: 1px solid #27272a; padding-bottom: 20px; text-align: center; }
+        .form-header h1 { margin: 0 0 10px 0; font-size: 2rem; }
+        .form-header p { color: #a1a1aa; margin: 0; }
+        
+        .form-arka { display: flex; flex-direction: column; gap: 20px; }
+        .campo { display: flex; flex-direction: column; gap: 8px; }
+        .campo label { font-weight: 600; color: white; }
+        .campo input, .campo textarea { background-color: #09090b; border: 1px solid #3f3f46; color: white; padding: 12px; border-radius: 8px; font-family: 'Inter', sans-serif; font-size: 1rem; transition: border-color 0.3s; }
+        .campo input:focus, .campo textarea:focus { outline: none; border-color: #8b5cf6; }
+        
+        .acciones-form { display: flex; gap: 15px; margin-top: 20px; }
+        .btn-guardar { background: linear-gradient(90deg, #8b5cf6, #ec4899); color: white; border: none; padding: 12px 24px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 1rem; transition: opacity 0.3s; }
+        .btn-guardar:hover { opacity: 0.9; }
+        .btn-cancelar { background: transparent; color: #a1a1aa; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; border: 1px solid #3f3f46; text-align: center; transition: background 0.3s, color 0.3s; }
+        .btn-cancelar:hover { background: #27272a; color: white; }
+    </style>
 </head>
 <body>
 
-<nav class="navbar">
+<nav class="navbar-pill">
     <div class="logo">
-        <img src="https://cdn-icons-png.flaticon.com/512/1653/1653611.png" alt="Logo ARKA">
-        <h2>ARKA</h2>
+        <!-- AQUÍ ESTÁ EL LOGO CORRECTO -->
+        <img src="{% static 'logo_arka.png' %}" alt="Logo ARKA" class="logo-img">
+        <h2 class="logo-text">ARKA</h2>
     </div>
     <div class="nav-links">
+        <a href="{% url 'inicio' %}">🏠 Inicio</a>
         <a href="{% url 'lista_informes' %}">📊 Informes</a>
-        <a href="{% url 'crear_informe' %}">➕ Crear</a>
+        <a href="{% url 'crear_informe' %}" class="active">➕ Crear</a>
         <a href="/admin/">⚙️ Admin</a>
     </div>
 </nav>
 
 <div class="contenedor-form">
-    <h1>➕ Crear Nuevo Informe</h1>
-    <form method="POST">
+    <div class="form-header">
+        <h1>➕ Crear Nuevo Informe</h1>
+        <p>Completa los campos para registrar una nueva atención.</p>
+    </div>
+    
+    <form method="POST" class="form-arka">
         {% csrf_token %}
         
         <div class="campo">
             <label>📋 Tipo de Atención:</label>
-            <input type="text" name="tipo_atencion" required>
+            <input type="text" name="tipo_atencion" required placeholder="Ej: Psicológica, Médica...">
         </div>
 
         <div class="campo">
             <label>👨‍⚕️ Profesional:</label>
-            <input type="text" name="profesional" required>
+            <input type="text" name="profesional" required placeholder="Nombre del profesional">
         </div>
 
         <div class="campo">
             <label>📍 Zona Geográfica:</label>
-            <input type="text" name="zona_geografica" required>
+            <input type="text" name="zona_geografica" required placeholder="Ej: Norte, Sur, Centro...">
         </div>
 
         <div class="campo">
             <label>👤 Usuario:</label>
-            <input type="text" name="usuario" required>
+            <input type="text" name="usuario" required placeholder="Nombre del usuario atendido">
         </div>
 
         <div class="campo">
             <label>📝 Resumen:</label>
-            <textarea name="resumen" required></textarea>
+            <textarea name="resumen" required rows="4" placeholder="Descripción de la atención..."></textarea>
         </div>
 
         <div class="acciones-form">
-            <button type="submit" class="btn-guardar">💾 Registar</button>
+            <button type="submit" class="btn-guardar">💾 Registrar</button>
             <a href="{% url 'lista_informes' %}" class="btn-cancelar">❌ Cancelar</a>
         </div>
     </form>

@@ -1,0 +1,428 @@
+/* --- VARIABLES DE COLOR (Temática ARKA) --- */
+:root {
+    --bg-dark: #09090b; /* Fondo casi negro */
+    --bg-card: #18181b; /* Fondo de las tarjetas */
+    --text-main: #ffffff;
+    --text-muted: #a1a1aa;
+    --primary-purple: #8b5cf6;
+    --primary-pink: #ec4899;
+    --gradient: linear-gradient(90deg, #8b5cf6, #ec4899);
+}
+
+body {
+    background-color: var(--bg-dark) !important;
+    color: var(--text-main) !important;
+    font-family: 'Inter', sans-serif !important;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* --- NAVBAR TIPO PÍLDORA --- */
+.navbar-pill {
+    display: flex !important; /* Forzamos que se aplique */
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(24, 24, 27, 0.9) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid #27272a !important;
+    border-radius: 50px !important;
+    padding: 10px 20px;
+    margin: 20px auto;
+    max-width: 1100px;
+    width: 90%;
+}
+
+/* --- ESTILOS DEL LOGO (SVG) --- */
+.navbar-pill .logo {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Espacio entre el logo y el texto */
+}
+
+/* Forzamos el tamaño del SVG para que no se vea gigante */
+.navbar-pill .logo-svg {
+    width: 45px !important;
+    height: 45px !important;
+    filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+}
+
+.navbar-pill .logo-text {
+    font-weight: 800;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
+    color: white !important;
+    margin: 0;
+}
+
+.nav-links a {
+    color: var(--text-muted) !important;
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--text-main) !important;
+}
+
+/* --- SECCIÓN HERO (Por si la usas después) --- */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 60px auto;
+    padding: 0 20px;
+    gap: 40px;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 550px;
+}
+
+.badge {
+    background-color: rgba(139, 92, 246, 0.1);
+    color: var(--primary-purple);
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid rgba(139, 92, 246, 0.3);
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    margin: 20px 0;
+    font-weight: 800;
+}
+
+.gradient-text {
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-subtitle {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-primary {
+    background: var(--gradient);
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: opacity 0.3s;
+}
+.btn-primary:hover { opacity: 0.9; }
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-main);
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid #3f3f46;
+    transition: background 0.3s;
+}
+.btn-secondary:hover { background: #27272a; }
+
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.placeholder-image {
+    width: 100%;
+    height: 300px;
+    background-color: var(--bg-card);
+    border: 1px dashed #3f3f46;
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-muted);
+}
+
+/* --- BARRA DE ESTADÍSTICAS --- */
+.stats-bar {
+    display: flex;
+    justify-content: space-around;
+    max-width: 800px;
+    margin: 50px auto;
+    padding: 20px;
+    border-top: 1px solid #27272a;
+    border-bottom: 1px solid #27272a;
+}
+
+.stat { text-align: center; }
+.stat strong { display: block; font-size: 1.5rem; font-weight: 800; }
+.stat span { color: var(--text-muted); font-size: 0.9rem; }
+
+/* --- SECCIÓN CÓMO FUNCIONA --- */
+.how-it-works {
+    max-width: 1100px;
+    margin: 80px auto;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.how-it-works h2 { font-size: 2.5rem; margin-bottom: 10px; }
+.section-subtitle { color: var(--text-muted); margin-bottom: 50px; }
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.card {
+    background-color: var(--bg-card);
+    border: 1px solid #27272a;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: left;
+    transition: transform 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary-purple);
+}
+
+.card-number {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--primary-purple);
+    margin-bottom: 15px;
+}
+
+.card h3 { margin: 0 0 10px 0; font-size: 1.2rem; }
+.card p { color: var(--text-muted); font-size: 0.95rem; margin: 0; }
+
+/* --- ESTILOS PARA EL FORMULARIO (Crear/Editar Informe) --- */
+.contenedor-form {
+    max-width: 800px;
+    margin: 40px auto;
+    background-color: var(--bg-card);
+    border: 1px solid #27272a;
+    border-radius: 15px;
+    padding: 40px;
+}
+
+.form-header {
+    margin-bottom: 30px;
+    border-bottom: 1px solid #27272a;
+    padding-bottom: 20px;
+}
+
+.form-header h1 { margin: 0 0 10px 0; font-size: 2rem; }
+
+.form-arka {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.campo input, .campo textarea {
+    background-color: #09090b;
+    border: 1px solid #3f3f46;
+    color: white;
+    padding: 12px;
+    border-radius: 8px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.campo input:focus, .campo textarea:focus {
+    outline: none;
+    border-color: var(--primary-purple);
+}
+
+.acciones-form {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.btn-guardar {
+    background: var(--gradient);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: opacity 0.3s;
+}
+
+.btn-guardar:hover { opacity: 0.9; }
+
+.btn-cancelar {
+    background: transparent;
+    color: var(--text-muted);
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    border: 1px solid #3f3f46;
+    text-align: center;
+    transition: background 0.3s, color 0.3s;
+}
+
+.btn-cancelar:hover { background: #27272a; color: white; }
+
+/* --- ESTILOS PARA LA TABLA (Lista de Informes) --- */
+.contenedor {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.cabecera {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.cabecera h1 { margin: 0; font-size: 2rem; }
+
+.tabla-responsive {
+    background-color: var(--bg-card);
+    border: 1px solid #27272a;
+    border-radius: 15px;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+th, td {
+    padding: 15px 20px;
+    border-bottom: 1px solid #27272a;
+}
+
+th {
+    background-color: #1e1e2f;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+tbody tr:hover {
+    background-color: rgba(139, 92, 246, 0.05);
+}
+
+.badge-tipo {
+    background-color: rgba(139, 92, 246, 0.2);
+    color: var(--primary-purple);
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.texto-truncado {
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.acciones {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-editar, .btn-eliminar {
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.btn-editar { color: #60a5fa; }
+.btn-editar:hover { background: rgba(96, 165, 250, 0.1); }
+
+.btn-eliminar { color: #f87171; }
+.btn-eliminar:hover { background: rgba(248, 113, 113, 0.1); }
+
+/* --- ESTILOS PARA ALERTA DE ELIMINAR --- */
+.contenedor-alerta-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 70vh;
+}
+
+.contenedor-alerta {
+    background-color: var(--bg-card);
+    border: 1px solid #27272a;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    max-width: 500px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.icono-alerta {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.contenedor-alerta h1 { margin-top: 0; }
+.contenedor-alerta p { color: var(--text-muted); margin-bottom: 30px; }
+
+.form-alerta {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.btn-eliminar-solido {
+    background-color: #ef4444;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-eliminar-solido:hover { background-color: #dc2626; }

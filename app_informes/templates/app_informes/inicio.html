@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARKA - Inicio</title>
+    <link rel="stylesheet" href="{% static 'estilos.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+</head>
+<body style="background-color: #09090b; color: white; margin: 0; padding: 0; font-family: 'Inter', sans-serif;">
+
+    <!-- Barra de navegación con estilos forzados -->
+    <nav style="display: flex; justify-content: space-between; align-items: center; background-color: #18181b; border: 1px solid #27272a; border-radius: 50px; padding: 10px 20px; margin: 20px auto; max-width: 1100px; width: 90%;">
+        <div style="display: flex; align-items: center; gap: 12px;">
+            <!-- AQUÍ ESTÁ EL TRUCO: Le decimos que mida 45x45 sí o sí -->
+            <img src="{% static 'logo_arka.png' %}" alt="Logo ARKA" style="width: 45px; height: 45px; object-fit: contain; border-radius: 12px; box-shadow: 0 0 12px rgba(139, 92, 246, 0.5);">
+            <h2 style="font-weight: 800; font-size: 1.3rem; margin: 0; color: white;">ARKA</h2>
+        </div>
+        <div style="display: flex; gap: 15px;">
+            <a href="{% url 'inicio' %}" style="color: white; text-decoration: none; font-weight: 600;">🏠 Inicio</a>
+            <a href="{% url 'lista_informes' %}" style="color: #a1a1aa; text-decoration: none;">📊 Informes</a>
+            <a href="{% url 'crear_informe' %}" style="color: #a1a1aa; text-decoration: none;">➕ Crear</a>
+            <a href="/admin/" style="color: #a1a1aa; text-decoration: none;">⚙️ Admin</a>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div style="max-width: 1200px; margin: 40px auto; padding: 0 20px;">
+        <header style="text-align: center; margin-top: 50px;">
+            <h1 style="font-size: 3rem; margin-bottom: 10px;">Bienvenido a ARKA-BD</h1>
+            <p style="color: #a1a1aa; font-size: 1.2rem;">Sistema de gestión de informes de atención.</p>
+        </header>
+
+        <!-- Tarjetas -->
+        <div style="display: flex; justify-content: center; gap: 30px; margin-top: 50px; flex-wrap: wrap;">
+            <div style="background: #1e1e2f; padding: 40px; border-radius: 15px; text-align: center; width: 250px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                <div style="font-size: 4rem; margin-bottom: 20px;">📊</div>
+                <h2>Ver Informes</h2>
+                <p style="color: #a1a1aa; margin-bottom: 20px;">Consulta todos los informes registrados.</p>
+                <a href="{% url 'lista_informes' %}" style="background: linear-gradient(90deg, #8b5cf6, #ec4899); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Ir a la lista</a>
+            </div>
+
+            <div style="background: #1e1e2f; padding: 40px; border-radius: 15px; text-align: center; width: 250px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+                <div style="font-size: 4rem; margin-bottom: 20px;">➕</div>
+                <h2>Crear Informe</h2>
+                <p style="color: #a1a1aa; margin-bottom: 20px;">Registra una nueva atención en el sistema.</p>
+                <a href="{% url 'crear_informe' %}" style="background: linear-gradient(90deg, #8b5cf6, #ec4899); color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600;">Crear ahora</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
