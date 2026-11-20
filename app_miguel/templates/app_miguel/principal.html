@@ -1,0 +1,126 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ARKA - Panel Principal</title>
+    <!-- Enlace exacto sin comillas erróneas en el tag de Django -->
+    <link rel="stylesheet" href="{% static 'app_miguel/css/principal.css' %}">
+</head>
+<body>
+
+    <!-- Header Flotante -->
+    <header class="navbar-container">
+        <div class="navbar">
+            
+            <!-- LOGO DEL ÁNGEL VECTORIAL -->
+            <div class="logo">
+    <div class="logo-badge">
+        <svg class="angel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <ellipse cx="12" cy="4" rx="3.2" ry="1.2"/>
+            <circle cx="12" cy="8.5" r="2"/>
+            <path d="M8 12C5 11 3 13.5 4.5 16C6.5 16.5 8.5 14.5 9.5 13"/>
+            <path d="M16 12C19 11 21 13.5 19.5 16C17.5 16.5 15.5 14.5 14.5 13"/>
+            <path d="M9.5 13L7.5 20H16.5L14.5 13"/>
+        </svg>
+    </div>
+    <span class="logo-text">ARKA</span>
+</div>
+            
+            <nav class="nav-links">
+                <a href="{% url 'principal' %}" class="active">Panel</a>
+                <a href="{% url 'requerimientos' %}">Requerimientos</a>
+            </nav>
+
+            <!-- AVATAR DEL ÁNGEL EN EL PERFIL -->
+            <div class="profile-dropdown-wrapper">
+                <button class="profile-avatar-btn" onclick="toggleDropdown()" title="Perfil de {{ usuario.username }}">
+                    <svg class="angel-icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <ellipse cx="12" cy="4" rx="3.2" ry="1.2"/>
+                        <circle cx="12" cy="8.5" r="2"/>
+                        <path d="M8 12C5 11 3 13.5 4.5 16C6.5 16.5 8.5 14.5 9.5 13"/>
+                        <path d="M16 12C19 11 21 13.5 19.5 16C17.5 16.5 15.5 14.5 14.5 13"/>
+                        <path d="M9.5 13L7.5 20H16.5L14.5 13"/>
+                    </svg>
+                </button>
+
+    <div class="dropdown-menu" id="dropdownMenu">
+    <div class="dropdown-header">
+        <span class="user-name">{{ usuario.username }}</span>
+        <span class="user-status">🟢 En línea</span>
+    </div>
+
+    <hr class="dropdown-divider">
+    <span class="dropdown-section-label">Opciones</span>
+    <a href="#mi-perfil" class="dropdown-item">👤 Mi Perfil</a>
+    <a href="#emergencia" class="dropdown-item">🆘 Contactos de Emergencia</a>
+    <a href="#configuracion" class="dropdown-item">⚙️ Configuración</a>
+
+    <hr class="dropdown-divider">
+    <form action="{% url 'logout' %}" method="POST" style="margin: 0;">
+        {% csrf_token %}
+        <button type="submit" class="dropdown-item btn-logout-item">🚪 Cerrar Sesión</button>
+    </form>
+</div>
+    </header>
+
+    <!-- Contenido del Dashboard -->
+    <main class="main-container">
+        <section class="motivational-hero">
+            <div class="badge-tag">✨ Tu espacio seguro</div>
+            <h1 class="motivational-title">
+                "Cada día es una nueva oportunidad para <span class="gradient-text">sanar y avanzar</span>"
+            </h1>
+            <p class="motivational-subtitle">
+                No tienes que llevarlo todo solo. ARKA está aquí para acompañarte de manera confidencial y humana.
+            </p>
+            <div class="hero-action">
+                <a href="/chat/" class="btn-gradient-hero">
+                    💬 Iniciar Conversación con el Chatbot
+                </a>
+            </div>
+        </section>
+
+        <div class="options-grid">
+            <div class="option-card">
+                <div class="card-icon">🤖</div>
+                <h3>Asistencia Inteligente</h3>
+                <p>Recibe escucha activa, guía inmediata y contención en situaciones de estrés o crisis.</p>
+                <a href="/chat/" class="btn-gradient">Ir al Chat Bot</a>
+            </div>
+
+            <div class="option-card">
+                <div class="card-icon">👨‍⚕️</div>
+                <h3>Módulo Profesional</h3>
+                <p>Espacio asignado para la gestión, seguimiento y atención especializada en salud mental.</p>
+                <a href="/profesional/" class="btn-outline-square">Ver Panel Profesional</a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Widget SOS Flotante -->
+    <a href="tel:123" class="widget-sos">
+        <span class="dot"></span> SOS 24/7
+    </a>
+
+    <script>
+        function toggleDropdown() {
+            const menu = document.getElementById('dropdownMenu');
+            menu.classList.toggle('show');
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('.profile-avatar-btn')) {
+                const dropdowns = document.getElementsByClassName("dropdown-menu");
+                for (let i = 0; i < dropdowns.length; i++) {
+                    let openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

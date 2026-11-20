@@ -11,6 +11,9 @@ class UsuarioArka(models.Model):
     direccion = models.CharField(max_length=255)
     creado_en = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        app_label = 'app_miguel'  # <--- Presente en UsuarioArka
+
     def __str__(self):
         return f"{self.identificador_unico} - {self.nombres} {self.apellidos}"
     
@@ -24,6 +27,9 @@ class Requerimiento(models.Model):
     criterios_aceptacion = models.TextField()
     rol = models.CharField(max_length=150)
     creado_en = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        app_label = 'app_miguel' 
 
     def __str__(self):
         return f"{self.identificador} - {self.nombre}"

@@ -16,9 +16,9 @@ def chat_grupal(request):
             return redirect('chat_grupal')
 
     mensajes = MensajeChat.objects.filter(tipo_chat='GRUPAL').order_by('fecha_envio')
-    return render(request, 'chat_grupal.html', {'mensajes': mensajes})
+    return render(request, 'app_martinez/chat_grupal.html', {'mensajes': mensajes})
 
-@login_required
+#@login_required
 def chat_personal(request, usuario_id):
     receptor = User.objects.get(id=usuario_id)
     if request.method == 'POST':
@@ -38,4 +38,4 @@ def chat_personal(request, usuario_id):
         receptor__in=[request.user, receptor]
     ).order_by('fecha_envio')
 
-    return render(request, 'chat_personal.html', {'mensajes': mensajes, 'receptor': receptor})
+    return render(request, 'app_martinez/chat_personal.html', {'mensajes': mensajes, 'receptor': receptor})
